@@ -3,7 +3,7 @@ import urllib, pickle
 link_list = []
 
 def get_first_link(page):
-	page = urllib.urlopen("%s" % page)
+	page = urllib.urlopen(page)
 	global page_contents
 	page_contents = page.read()
 	#page.close()
