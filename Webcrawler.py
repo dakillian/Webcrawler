@@ -1,4 +1,4 @@
-import urllib
+import urllib, pickle
 
 page = urllib.urlopen("http://www.python.org")
 
@@ -12,6 +12,7 @@ def get_first_link(page_contents):
 	end_quote = page_contents.find('"', start_quote + 1)
 	url = page_contents[start_quote + 1:end_quote]
 	link_list.append(url)
+	pickle.dump(link_list, open('links', 'wb'))
 	get_next_link(page_contents, end_quote)
 	    
 def get_next_link(page_contents, end_quote):
@@ -26,7 +27,8 @@ def get_next_link(page_contents, end_quote):
 		else:	
 			url = page_contents[start_quote + 1:end_quote]
 			link_list.append(url)
+			pickle.dump(link_list, open('links', 'wb'))
+			# test purposes
 			print url
-	#get_next_link(page_contents, end_quote)
 	    
 get_first_link(page_contents) 
